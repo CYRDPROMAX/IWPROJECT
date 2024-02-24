@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Review Product Analysis
+{% endblock %}
+
+{% block head %}
+<style>
+/* CSS for Review Product Analysis section */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3df00; /* Yellow */
+    color: #333; /* Dark gray for better readability */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f3df00; /* White background for content */
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    color: #000; /* Blue for heading */
+    margin-bottom: 20px;
+}
+
+.analysis-details {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #000; /* Light gray background */
+    color: #f3df00;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+
+}
+
+h3 {
+    color: #f3df00; /* Dark gray for headings */
+    margin-bottom: 10px;
+}
+
+ul {
+    margin-bottom: 15px;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+</style>
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2>Review Product Analysis</h2>
+    <div class="analysis-details">
+        <h3>Customer Reviews</h3>
+        <ul>
+            <li>Review 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Review 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <!-- Add more reviews as needed -->
+        </ul>
+        <h3>Sales Performance</h3>
+        <p>Total Sales: XXX</p>
+        <p>Average Rating: X.X</p>
+        <!-- Add more analysis details as needed -->
+        <a href ="/detailed"><button class="btn">Request Detailed Report</button></a>
+        
+    </div>
+</div>
+{% endblock %}
