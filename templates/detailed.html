@@ -1,152 +1,158 @@
-{% extends 'base.html' %}
-
-{% block title %}
-Detailed Review Product Analysis
-{% endblock %}
-
-{% block head %}
+{% extends 'base.html' %} {% include 'navbar.html' %} {% block title %} Detailed
+Review Product Analysis {% endblock %} {% block head %}
 <style>
-    body {
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3df00; /* Yellow */
-    color: #000000; /* Black */
-}
+    background-color: rgb(235, 192, 1);
+    color: #000000;
+  }
 
-.container {
-    max-width: 800px;
-    margin: 50px auto;
+  .container {
+    max-width: 1000px;
+    margin: 20px auto;
     padding: 20px;
-}
+  }
 
-h1 {
+  h1 {
     text-align: center;
-}
+  }
 
-.report {
-    background-color: #000000; /* Black */
-    color: #FFFF66; /* Yellow */
+  .report {
+    background-color: #000000;
+    color: #ffff66;
     padding: 20px;
     border-radius: 10px;
-}
+  }
 
-h2 {
-    color: #FFFF66; /* Yellow */
-}
+  h2 {
+    color: #ffff66;
+  }
 
-.report p {
+  .report p {
     margin-bottom: 10px;
-}
+  }
 
-ul {
+  ul {
     padding-left: 20px;
     margin-bottom: 20px;
-}
+  }
 
-.feedback {
+  .feedback {
     display: flex;
     flex-wrap: wrap;
-}
+  }
 
-.feedback-item {
+  .feedback-item {
     width: 45%;
     padding: 10px;
     margin: 5px;
-    background-color: #f0f007; /* Yellow */
+    background-color: rgb(200, 164, 3);
     color: #000000;
     border-radius: 5px;
-}
+  }
 
-.feedback-item p {
+  .feedback-item:hover {
+    background-color: rgb(254, 208, 0);
+  }
+
+  .feedback-item p {
     margin: 0;
-}
-
+  }
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}{% block nav %} {% endblock %}
 <div class="container">
-    <h1>Detailed Sales Review Analysis Report</h1>
-    <div class="report">
-        <h2>Sales Overview</h2>
-        <p>Total Sales: $XXXXX</p>
-        <p>Average Rating: X.X</p>
-        <h2>Product Details</h2>
-        <div class="product-details">
-            <h3>Product Name: Product 1</h3>
-            <p>Units Sold: XXX</p>
-            <p>Price: $XX.XX</p>
-        </div>
-        <h2>Customer Feedback</h2>
-        <div class="feedback">
-            <div class="feedback-item">
-                <p>Customer Name</p>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                <p>Rating: X</p>
-                <p>Sentiment Analysis: Positive</p>
-            </div>
-            <div class="feedback-item">
-                <p>Customer Name</p>
-                <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
-                <p>Rating: X</p>
-                <p>Sentiment Analysis: Negative</p>
-            </div>
-            <!-- Add more customer feedback as needed -->
-        </div>
-        <h2>Sentiment Analysis Graph</h2>
-        <canvas id="sentimentChart" width="400" height="200"></canvas>
+  <h1>Detailed Sales Review Analysis Report</h1>
+  <div class="report">
+    <h2>Product Details</h2>
+    <div class="product-details">
+      <h3>Product Name: Product 1</h3>
+      <p>Units Sold: XXX</p>
+      <p>Price: $XX.XX</p>
+      <h2>Sales Overview</h2>
+      <p>Total Sales: $XXXXX</p>
+      <p>Average Rating: X.X</p>
     </div>
+    <h2>Customer Feedback</h2>
+    <div class="feedback">
+      <div class="feedback-item">
+        <p><strong>Customer Name</strong></p>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+        <p>Rating:<strong>X</strong></p>
+        <p>Sentiment Score:<strong>{-1,1}</strong></p>
+      </div>
+      <div class="feedback-item">
+        <p><strong>Customer Name</strong></p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Necessitatibus totam possimus quaerat adipisci omnis voluptatem
+          facilis saepe? Natus, non magni!
+        </p>
+        <p>Rating:<strong>X</strong></p>
+        <p>Sentiment Score:<strong>{-1,1}</strong></p>
+      </div>
+      <div class="feedback-item">
+        <p><strong>Customer Name</strong></p>
+        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit."</p>
+        <p>Rating:<strong>X</strong></p>
+        <p>Sentiment Score:<strong>{-1,1}</strong></p>
+      </div>
+    </div>
+    <h2>Sentiment Analysis Graph</h2>
+    <canvas id="sentimentChart" width="400" height="200"></canvas>
+  </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // Dummy data for sentiment analysis
-    const feedbackData = [
-        { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", rating: 4, sentiment: "Positive" },
-        { text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", rating: 2, sentiment: "Negative" },
-        // Add more feedback data here
-    ];
+  const feedbackData = [
+    {
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      rating: 4,
+      sentiment: "Positive",
+    },
+    {
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      rating: 2,
+      sentiment: "Negative",
+    },
+  ];
 
-    // Calculate average sentiment score
-    let totalSentimentScore = 0;
-    feedbackData.forEach(feedback => {
-        if (feedback.sentiment === "Positive") {
-            totalSentimentScore += 1;
-        } else if (feedback.sentiment === "Negative") {
-            totalSentimentScore -= 1;
-        }
-    });
-    const averageSentimentScore = totalSentimentScore / feedbackData.length;
+  let totalSentimentScore = 0;
+  feedbackData.forEach((feedback) => {
+    if (feedback.sentiment === "Positive") {
+      totalSentimentScore += 1;
+    } else if (feedback.sentiment === "Negative") {
+      totalSentimentScore -= 1;
+    }
+  });
+  const averageSentimentScore = totalSentimentScore / feedbackData.length;
 
-    // Display average sentiment score
-    console.log("Average Sentiment Score:", averageSentimentScore);
+  console.log("Average Sentiment Score:", averageSentimentScore);
 
-    // Display sentiment analysis graph
-    const ctx = document.getElementById('sentimentChart').getContext('2d');
-    const sentimentChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Sentiment Score'],
-            datasets: [{
-                label: 'Sentiment Score',
-                data: [averageSentimentScore],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 1
-            }]
+  const ctx = document.getElementById("sentimentChart").getContext("2d");
+  const sentimentChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Sentiment Score"],
+      datasets: [
+        {
+          label: "Sentiment Score",
+          data: [averageSentimentScore],
+          backgroundColor: ["rgba(54, 162, 235, 0.2)"],
+          borderColor: ["rgba(54, 162, 235, 1)"],
+          borderWidth: 1,
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 </script>
 
 {% endblock %}
