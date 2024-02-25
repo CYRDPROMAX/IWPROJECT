@@ -1,82 +1,76 @@
-{% extends 'base.html' %}
-
-{% block title %}
-View Product
-{% endblock %}
-
-{% block head %}
+{% extends 'base.html' %} {% include 'navbar.html' %} {% block title %} View
+Product {% endblock %} {% block head %}
 <style>
-/* CSS for View Product section */
-body {
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3df00; /* Yellow */
-    color: #f3df00; /* Dark gray for better readability */
-}
+    background-color: rgb(235, 192, 1);
+    color: #f3df00;
+  }
 
-.container {
+  .container {
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #000; /* White background for content */
+    background-color: #000;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
-}
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-h2 {
+  h2 {
     text-align: center;
-    color: #f3df00; /* Blue for heading */
+    color: rgb(235, 192, 1);
     margin-bottom: 20px;
-}
+  }
 
-.product-details {
+  .product-details {
     padding: 20px;
     border-radius: 10px;
-    background-color: #000; /* Light gray background */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
-}
+    background-color: #000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
 
-h3 {
-    color: #f3df00; /* Dark gray for headings */
+  h3 {
+    color: #f3df00;
     margin-bottom: 10px;
-}
+  }
 
-.description {
+  .description {
     margin-bottom: 15px;
-}
+  }
 
-.price {
+  .price {
     margin-bottom: 15px;
-    font-weight: bold; /* Make price bold */
-    color: #f3df00; /* Blue for price */
-}
+    font-weight: bold;
+    color: #f3df00;
+  }
 
-.btn {
+  .btn {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s; /* Smooth hover effect */
-}
+    transition: background-color 0.3s;
+  }
 
-.btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
+  .btn:hover {
+    background-color: #0056b3;
+  }
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %} {% block nav %} {% endblock %}
 <div class="container">
-    <h2>View Product</h2>
-    <div class="product-details">
-        <h3>Product Name</h3>
-        <p class="description">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="price">Price: $XX.XX</p>
-        <a href="/review"><button class="btn">View Reviews</button></a>
-    </div>
+  <h2>View Product</h2>
+  <div class="product-details">
+    <h3>Product Name</h3>
+    <p class="description">
+      Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </p>
+    <p class="price">Price: $XX.XX</p>
+    <a href="/review"><button class="btn">View Reviews</button></a>
+  </div>
 </div>
 {% endblock %}

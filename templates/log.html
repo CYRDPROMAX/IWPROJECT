@@ -1,59 +1,55 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <style>
-        body {
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3df00; /* Yellow */
-    color: #000000; /* Black */
-}
+    background-color: rgb(235, 192, 1);
+    color: #000000;
+  }
 
-.container {
+  .container {
     max-width: 420px;
     margin: 0 auto;
     padding: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     border-radius: 5px;
     margin-top: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #000000;
     justify-content: center;
-}
+  }
 
-h1 {
+  h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #f3df00; /* Yellow */
+    color: #f3df00;
+  }
 
-}
-
-.form-group {
+  .form-group {
     margin-bottom: 15px;
-}
+  }
 
-label {
+  label {
     display: block;
     margin-bottom: 5px;
-    color: #f3df00; /* Yellow */
+    color: #f3df00;
+  }
 
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     width: 400px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
+  }
 
-input[type="checkbox"] {
+  input[type="checkbox"] {
     margin-right: 5px;
-}
+  }
 
-button {
+  button {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -62,58 +58,58 @@ button {
     cursor: pointer;
     display: block;
     margin: 0 auto;
-}
+  }
 
-button:hover {
+  button:hover {
     background-color: #007bff;
-}
+  }
 
-p a {
+  p a {
     text-decoration: underline;
     text-align: center;
     color: #f3df00;
-}
-p{
+  }
+  p {
     color: #f3df00;
     text-align: center;
-}
-a:hover {
-    color: #3E8E41;
-}
-.forgot-password a {
+  }
+  a:hover {
+    color: #3e8e41;
+  }
+  .forgot-password a {
     position: relative;
     display: flex;
     justify-content: end;
     color: #0075f2;
-    margin-top: 10px; 
+    margin-top: 10px;
     font-size: small;
     text-decoration: none;
-}
-
+  }
 </style>
-{% endblock %}
-
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container">
-    <h1>Log In</h1>
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="username">Username or Email:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-            
-            <label for="remember-me" style="font-size: small;"><input type="checkbox" id="remember-me" name="remember-me">Remember Me</label>
-            <label class="forgot-password"><a href="/forgot">Forgot password?</a></label>
-
-        </div>
-        <button type="submit">Log In</button>
-        <p>Don't have an account? <a href="/sign" >Sign Up</a></p>
-    </form>
+  <h1>Log In</h1>
+  <form action="#" method="post">
+    <div class="form-group">
+      <label for="username">Username or Email:</label>
+      <input type="text" id="username" name="username" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+    <div class="form-group">
+      <label for="remember-me" style="font-size: small"
+        ><input type="checkbox" id="remember-me" name="remember-me" />Remember
+        Me</label
+      >
+      <label class="forgot-password"
+        ><a href="/forgot">Forgot password?</a></label
+      >
+    </div>
+    <button type="submit">Log In</button>
+    <p>Don't have an account? <a href="/sign">Sign Up</a></p>
+  </form>
 </div>
 
 {% endblock %}

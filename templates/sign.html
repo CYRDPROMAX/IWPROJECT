@@ -1,59 +1,55 @@
-{% extends 'base.html' %}
-
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 
 <style>
-        body {
+  body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f3df00; /* Yellow */
-    color: #000000; /* Black */
-}
+    background-color: rgb(235, 192, 1);
+    color: #000000;
+  }
 
-.container {
+  .container {
     max-width: 430px;
     margin: 0 auto;
     padding: 30px;
     margin-top: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #000000;
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #000000;
-}
+  }
 
-h1 {
+  h1 {
     text-align: center;
     margin-bottom: 20px;
-    color: #f3df00; /* Yellow */
+    color: #f3df00;
+  }
 
-}
-
-.form-group {
+  .form-group {
     margin-bottom: 15px;
-}
+  }
 
-label {
+  label {
     display: block;
     margin-bottom: 5px;
-    color: #f3df00; /* Yellow */
+    color: #f3df00;
+  }
 
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
     width: 400px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 3px;
-}
+  }
 
-input[type="checkbox"] {
+  input[type="checkbox"] {
     margin-right: 5px;
-}
+  }
 
-button {
+  button {
     background-color: #007bff;
     color: white;
     padding: 10px 20px;
@@ -62,58 +58,63 @@ button {
     cursor: pointer;
     display: block;
     margin: 0 auto;
-}
+  }
 
-button:hover {
+  button:hover {
     background-color: #007bff;
-}
+  }
 
-a {
-    color: #4CAF50;
+  a {
+    color: #4caf50;
     text-decoration: none;
-}
-p a {
+  }
+  p a {
     text-decoration: underline;
     text-align: center;
     color: #f3df00;
-}
-p{
+  }
+  p {
     color: #f3df00;
     text-align: center;
-}
-a:hover {
-    color: #3E8E41;
-}
-
+  }
+  a:hover {
+    color: #3e8e41;
+  }
 </style>
-{% endblock %}
-{% block body %}
+{% endblock %} {% block body %}
 <div class="container">
-    <h1>Sign Up</h1>
-    <form action="#" method="post">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-            <label for="confirm-password">Confirm Password:</label>
-            <input type="password" id="confirm-password" name="confirm-password" required>
-        </div>
-        <div class="form-group">
-            
-            <label for="terms" style="font-size: small;"><input type="checkbox" id="terms" name="terms" required>I agree to the Terms of Service and Privacy Policy</label>
-        </div>
-        <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="/log">Log in</a></p>
+  <h1>Sign Up</h1>
+  <form action="#" method="post">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+    </div>
+    <div class="form-group">
+      <label for="confirm-password">Confirm Password:</label>
+      <input
+        type="password"
+        id="confirm-password"
+        name="confirm-password"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="terms" style="font-size: small"
+        ><input type="checkbox" id="terms" name="terms" required />I agree to
+        the Terms of Service and Privacy Policy</label
+      >
+    </div>
+    <button type="submit">Sign Up</button>
+  </form>
+  <p>Already have an account? <a href="/log">Log in</a></p>
 </div>
 
 {% endblock %}
