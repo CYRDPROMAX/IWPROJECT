@@ -29,5 +29,9 @@ def log():
 def detailed():
     return render_template('detailed.html')
 
+@app.route('/add')
+def add():
+    return render_template('add_rev.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
