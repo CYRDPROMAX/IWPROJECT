@@ -11,7 +11,11 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pickle
 import os
-
+from dotenv import load_dotenv
+load_dotenv()
+apikey = os.getenv("apikey")
+apipass = os.getenv("apipass")
+print(apikey,apipass)
 amzon_df = pickle.load(open("artifacts/table.pkl","rb"))
 
 def tokenize_stem(text):
@@ -91,7 +95,7 @@ def get_rev(asin):
     response = requests.request(
     'POST',
     'https://realtime.oxylabs.io/v1/queries',
-    auth=('iwpproject', 'CyrVasAnu1234'), #Your credentials go here
+    auth=(apikey, apipass), #Your credentials go here
     json=payload,
     )
     abc = response.json()['results'][0]['content']['reviews']
@@ -107,7 +111,7 @@ def get_prod(asin):
     response = requests.request(
     'POST',
     'https://realtime.oxylabs.io/v1/queries',
-    auth=('iwpproject', 'CyrVasAnu1234'), #Your credentials go here
+    auth=(apikey, apipass), #Your credentials go here
     json=payload,
     )
     abc = response.json()['results'][0]['content']
