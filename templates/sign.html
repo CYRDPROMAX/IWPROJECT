@@ -1,5 +1,13 @@
 {% extends 'base.html' %} {% block head %}
-
+<!-- <script>
+  window.addEventListener("onload",function(){
+    console.log("alert");
+    {% if alerts|length>0 %}
+  console.log("alert");
+  alert({{alerts}});
+  {% endif %}
+  });
+</script> -->
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -13,7 +21,7 @@
     max-width: 430px;
     margin: 0 auto;
     padding: 30px;
-    margin-top: 30px;
+    margin: 5% auto;
     border: 1px solid #000000;
     border-radius: 5px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
@@ -80,11 +88,52 @@
   a:hover {
     color: #3e8e41;
   }
+  video {
+    /** Simulationg background-size: cover */
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .video-wrapper {
+    /* Telling our absolute positioned video to 
+  be relative to this element */
+
+    width: 100%;
+    height: 100%;
+
+    /* Will not allow the video to overflow the 
+  container */
+    overflow: hidden;
+
+    /* Centering the container's content vertically 
+  and horizontally */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+  }
+  .header {
+    position: relative;
+    color: white;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+  }
 </style>
 {% endblock %} {% block body %}
+<div class="video-wrapper">
+  <video id="videoBG" autoplay muted loop>
+    <source src="{{vid}}" type="video/mp4" />
+  </video>
+</div>
 <div class="container">
   <h1>Sign Up</h1>
-  <form action="#" method="post">
+  <form id="signup" method="POST">
     <div class="form-group">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" required />
@@ -99,12 +148,8 @@
     </div>
     <div class="form-group">
       <label for="confirm-password">Confirm Password:</label>
-      <input
-        type="password"
-        id="confirm-password"
-        name="confirm-password"
-        required
-      />
+      <input type="password" id="confirm-password" name="rpassword" required />
+      <p style="color: red; font-size: small">{{alert1}}</p>
     </div>
     <div class="form-group">
       <label for="terms" style="font-size: small"
@@ -116,5 +161,4 @@
   </form>
   <p>Already have an account? <a href="/log">Log in</a></p>
 </div>
-
 {% endblock %}

@@ -63,15 +63,13 @@
   <div class="container-nav">
     <h1 class="logo">GREAT PRODUCT ANALYSIS</h1>
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Products</a></li>
+      <li><a href="/home/{{user}}">Home</a></li>
       <li><a href="#">About</a></li>
       <li><a href="/contact">Contact</a></li>
       <div class="auth-links">
-        <a href="/sign">Sign Up</a>
-        <a href="/log">Log In</a>
+        <a href="/log" style="color: red">Log Out</a>
       </div>
     </ul>
   </div>
 </nav>
-{% block nav %}{% endblock %} {% endblock %}
+{% endblock %}

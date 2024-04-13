@@ -1,83 +1,68 @@
-{% extends 'base.html' %} 
-{% block head %}
+{% extends 'base.html' %} {% block head %}
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: rgb(235, 192, 1);
-        color: #f3df00;
-    }
+  body {
+    font-family: "Oswald", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(235, 192, 1);
+    color: #f3df00;
+  }
 
-    .container {
-        max-width: 400px;
-        margin: 50px auto;
-        padding: 20px;
-        background-color: #000;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
+  .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
-    h1 {
-        text-align: center;
-        color: rgb(235, 192, 1);
-        margin-bottom: 20px;
-    }
+  h1 {
+    text-align: center;
+    color: rgb(235, 192, 1);
+    margin-bottom: 20px;
+  }
 
-    form {
-        max-width: 300px;
-        margin: 0 auto;
-    }
-    label, input {
-        display: block;
-        margin-bottom: 10px;
-    }
-    input[type="submit"] {
-        margin-top: 10px;
-        background-color: #007bff;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-    input[type="submit"]:hover {
-        background-color: #0056b3;
-    }
+  form {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  label,
+  input {
+    display: block;
+    margin-bottom: 10px;
+  }
+  input[type="submit"] {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
 </style>
-{% endblock %} 
 
+{% endblock %} {% block body %} {% include 'navbar.html' %}
 
-{% block body %}
 <h1>Add Product</h1>
-<form class="container" id="addProductForm">
-    <label for="productName">Product Name:</label>
-    <input type="text" id="productName" name="productName" required>
-    
-    <label for="unitsSold">Units Sold:</label>
-    <input type="number" id="unitsSold" name="unitsSold" required>
-    
-    <label for="price">Price:</label>
-    <input type="number" id="price" name="price" step="0.01" required>
+<form class="container" id="addProductForm" method="POST">
+  <label for="productName">Product ASIN:</label>
+  <input type="text" id="productASIN" name="productASIN" required />
 
-    <label for="numberofreviews">Number of reviews:</label>
-    <input type="number" id="nr" name="nr" required>
-    
-    <input type="submit" value="Add Product">
+  <input id="submit" type="submit" value="Add Product" />
 </form>
-
 <script>
-    document.getElementById("addProductForm").addEventListener("submit", function(event) {
-        event.preventDefault(); 
-        
-        const productName = document.getElementById("productName").value;
-        const unitsSold = document.getElementById("unitsSold").value;
-        const price = document.getElementById("price").value;
-        console.log("Product Name:", productName);
-        console.log("Units Sold:", unitsSold);
-        console.log("Price:", price);
-    });
+  function dis() {
+    var sub = document.getElementById("submit");
+    console.log(sub);
+    sub.disabled = true;
+  }
+  var sub = document.getElementById("addProductForm");
+  sub.addEventListener("submit", dis);
 </script>
-
 {% endblock %}

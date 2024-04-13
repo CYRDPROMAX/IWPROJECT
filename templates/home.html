@@ -1,0 +1,187 @@
+{% extends 'base.html' %}   {% block head %}
+<title>PRODUCT SALE ANALYSIS</title>
+
+<style>
+  body {
+    font-family: "Oswald", Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(235, 192, 1);
+    color: #000000;
+    min-height: 100vh;
+  }
+  /* .footer{
+    bottom: 0;} */
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+ 
+  .i-icon{
+    position: relative;
+    z-index: 10;;
+  }
+
+  .product {
+    border: 1px solid #000000;
+    background-color: rgb(34, 34, 34);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+  .product img:hover{
+    opacity: 70%;
+  }
+
+  .product img {
+    width: 100%;
+    height: 250px;
+    border-radius: 5px;
+    position: relative;
+  }
+
+  .product-info {
+    text-align: center;
+    margin-top: 10px;
+    color: #f3df00;
+    font-size: small;
+  }
+
+  .product-title{
+    font-size: medium;
+  }
+  .product-info a {
+    display: block;
+    margin-top: 5px;
+    color: #000;
+    color: rgb(167, 167, 254);
+    text-decoration: none;
+  }
+
+  .product-info a:hover {
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+
+
+  .add-prod {
+    height: 45px;
+    width: 45px;
+    position: absolute;
+    right: 30px;
+    top: 150px;
+    border: 4px dotted black;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+
+  .add-prod:hover {
+    background-color: black;
+  }
+  .add-prod:hover svg {
+    fill: rgb(235, 192, 1);
+  }
+  
+
+
+</style>
+
+<script>
+  setTimeout(func, 10);
+  //setTimeout(func2, 10);
+  function func() {
+    var prod = document.getElementsByClassName("product-title");
+    var len = prod.length;
+    for (var i = 0; i < len; i++) {
+      let rev = prod[i].innerText;
+      let dot = "...";
+      if (rev.length > 40) {
+        rev = rev.slice(0, 35).concat(dot);
+      }
+      prod[i].innerHTML = rev;
+    }
+  }
+  
+</script>
+{% endblock %} {% block body %}
+{% include 'navbar.html' %}
+
+<a href="/add/{{user}}"
+  ><div class="add-prod">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="40"
+      fill="black"
+      class="bi bi-plus-lg"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+      />
+    </svg></div
+></a>
+{% include 'change_color.html' %}
+  
+{% if products|length == 0 %}
+<h4 style="text-align: center">
+  There are no Products to analyze. Create one by clicking on the plus symbol.</a>
+</h4>
+{%else%}
+<div class="container">
+<div class="product-grid">
+    {% for prod in products %}
+    <div class="product">
+      <img src={{prod.image}} alt="Product 1" />
+      
+      <div class="product-info">
+        <p class="product-title">{{prod.title}}</p>
+        <a style="color: rgb(167, 167, 254);" href="/view/{{user}}/{{prod.asin}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+        </svg>View Product</a>
+        <a style="color: rgb(2, 208, 2);" href="/detailed/{{user}}/{{prod.asin}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-data" viewBox="0 0 16 16">
+          <path d="M9.5 0a.5.5 0 0 1 .5.5.5.5 0 0 0 .5.5.5.5 0 0 1 .5.5V2a.5.5 0 0 1-.5.5h-5A.5.5 0 0 1 5 2v-.5a.5.5 0 0 1 .5-.5.5.5 0 0 0 .5-.5.5.5 0 0 1 .5-.5z"/>
+          <path d="M3 2.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 0 0-1h-.5A1.5 1.5 0 0 0 2 2.5v12A1.5 1.5 0 0 0 3.5 16h9a1.5 1.5 0 0 0 1.5-1.5v-12A1.5 1.5 0 0 0 12.5 1H12a.5.5 0 0 0 0 1h.5a.5.5 0 0 1 .5.5v12a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5z"/>
+          <path d="M10 7a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0zm-6 4a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0zm4-3a1 1 0 0 0-1 1v3a1 1 0 1 0 2 0V9a1 1 0 0 0-1-1"/>
+        </svg>View Review Analysis</a>
+        <a style="color: red;" href="/delete/{{user}}/{{prod.id}}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+          <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+        </svg>Remove Product</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% include 'footer.html' %}
+<script>
+  window.onload = function(){
+  {% if products|length<=4 %}
+  var footer = document.getElementsByClassName("footer")[0];
+  footer.style.bottom = "0px";
+  // console.log(footer);
+  // document.write("hello");
+  {% endif %}
+  };
+</script>
+{% endblock %}

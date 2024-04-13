@@ -1,38 +1,88 @@
-{% extends 'base.html' %} {% include 'navbar.html' %} {% block title %} View
-Product {% endblock %} {% block head %}
+{% extends 'base.html' %} {% block title %} View Product {% endblock %} {% block
+head %}
+<!-- <script>
+  function makeGraph() {
+    var container = document.getElementById("graph");
+    var labels = document.getElementById("labels");
+    var dnl = container.getElementsByTagName("li");
+    for (var i = 0; i < dnl.length; i++) {
+      var item = dnl.item(i);
+      var value = item.innerHTML;
+      var content = value.split(":");
+      value = content[0];
+      item.style.height = value + "px";
+      item.style.top = 199 - value + "px";
+      item.style.left = i * 50 + 20 + "px";
+      item.style.height = value + "px";
+      item.innerHTML = value;
+      item.style.visibility = "visible";
+      left = i * 50 + 58 + "px";
+      labels.innerHTML =
+        labels.innerHTML +
+        "<span style='position:static;top:-16px;left:" +
+        left +
+        ";background:" +
+        color +
+        "'>" +
+        year +
+        "</span>";
+    }
+  }
+
+  window.onload = makeGraph;
+</script> -->
+<script>
+  // setTimeout(func, 10);
+  window.addEventListener("load", func);
+  //setTimeout(func2, 10);
+  function func() {
+    var prod = document.getElementsByClassName("recc-prod");
+    var len = prod.length;
+    for (var i = 0; i < len; i++) {
+      let rev = prod[i].innerText;
+      let dot = "...";
+      if (rev.length > 100) {
+        rev = rev.slice(0, 95).concat(dot);
+      }
+      prod[i].innerHTML = rev;
+    }
+  }
+</script>
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: "Oswald", Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: rgb(235, 192, 1);
-    color: #f3df00;
+    color: rgb(235, 192, 1);
   }
 
   .container {
     max-width: 800px;
-    margin: 50px auto;
+    margin: 30px auto;
     padding: 20px;
-    background-color: #000;
+    background-color: rgb(34, 34, 34);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
 
   h2 {
+    font-size: x-large;
+    font-weight: 1000;
     text-align: center;
-    color: rgb(235, 192, 1);
-    margin-bottom: 20px;
+    color: rgb(4, 4, 4);
+    margin-bottom: 10px;
   }
 
   .product-details {
     padding: 20px;
     border-radius: 10px;
-    background-color: #000;
+    background-color: rgb(34, 34, 34);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   }
 
   h3 {
-    color: #f3df00;
+    color: rgb(235, 192, 1);
     margin-bottom: 10px;
   }
 
@@ -43,7 +93,7 @@ Product {% endblock %} {% block head %}
   .price {
     margin-bottom: 15px;
     font-weight: bold;
-    color: #f3df00;
+    color: rgb(235, 192, 1);
   }
 
   .btn {
@@ -59,18 +109,103 @@ Product {% endblock %} {% block head %}
   .btn:hover {
     background-color: #0056b3;
   }
+
+  #bar-example-8 {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+    /* margin: 0 auto; */
+  }
+  #bar-example-8 .bar {
+    --aspect-ratio: 4 / 3;
+  }
+  #bar-example-8 td {
+    height: 10px;
+    background-color: rgb(235, 192, 1);
+    color: black;
+    /* padding-left: 10px; */
+  }
+  #bar-example-8 th {
+    text-align: end;
+    display: inline;
+    text-align: center;
+    padding-top: 15px;
+    /* margin: auto; */
+  }
+  .recc-section {
+    color: black;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  /* #graph li {
+    position: static;
+    list-style: none;
+    background: lightblue;
+    width: 40px;
+    text-align: center;
+    border: 1px solid black;
+    visibility: hidden;
+    background-image: url(bar-shaded.png);
+    background-repeat: repeat-y;
+  } */
 </style>
-{% endblock %} {% block body %} {% block nav %} {% endblock %}
+{% endblock %} {% block body %} {% include 'navbar.html' %} {% include
+'change_color.html' %}
+<h2>Product Details</h2>
 <div class="container">
-  <h2>View Product</h2>
   <div class="product-details">
-    <h3>Product Name</h3>
-    <p class="description">
-      Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-      do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    </p>
-    <p class="price">Price: $XX.XX</p>
-    <a href="/review"><button class="btn">View Reviews</button></a>
+    <h3 style="text-align: center">{{product.title}}</h3>
+    <p><b>Manufactured by</b> - {{product.manufacturer}}</p>
+    <p class="description">{{product.desc}}</p>
+    <p class="price">Price: {{product.price}}</p>
+    <h3>Rating distribution:</h3>
+    <div id="bar-example-8">
+      <table
+        class="charts-css bar show-labels show-primary-axis show-4-secondary-axes data-spacing-5"
+      >
+        <caption>
+          Bar Example #8
+        </caption>
+        <thead>
+          <tr></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td style="--size: {{product.perc1/100}}">{{product.perc1}}</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td style="--size: {{product.perc2/100}}">{{product.perc2}}</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td style="--size: {{product.perc3/100}}">{{product.perc3}}</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td style="--size: {{product.perc4/100}}">{{product.perc4}}</td>
+          </tr>
+          <tr>
+            <th scope="row">5</th>
+            <td style="--size: {{product.perc5/100}}">{{product.perc5}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <a href="/detailed/{{user}}/{{product.asin}}"
+      ><button class="btn">View Review Analysis</button></a
+    >
   </div>
 </div>
-{% endblock %}
+<div class="recc-section">
+  <b>What other related products sellers are listing:</b> {% for x in
+  recommended %}
+  <li class="recc-prod">{{x}}</li>
+  {% endfor %}
+</div>
+{% include 'footer.html' %} {% endblock %}

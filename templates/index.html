@@ -1,228 +1,79 @@
-{% extends 'base.html' %} {% include 'navbar.html' %} {% block head %}
-<title>PRODUCT SALE ANALYSIS</title>
+{% extends 'base.html' %}{% block head %}
 <style>
   body {
-    font-family: Arial, sans-serif;
+    font-family: "Oswald", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: rgb(235, 192, 1);
+    background-color: transparent;
     color: #000000;
+    min-height: 100%;
   }
-
   .container {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 18% auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
   h1 {
     text-align: center;
   }
+  button {
+    font-family: "Oswald", Arial, sans-serif;
 
-  .product-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-
-  .product {
-    border: 1px solid #000000;
-    background-color: rgb(29, 29, 29);
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  }
-
-  .product img {
-    width: 100%;
-    height: 150px;
+    width: 120px;
+    height: 50px;
+    background-color: rgb(235, 192, 1);
     border-radius: 5px;
+    font-size: large;
   }
+  video {
+    /** Simulationg background-size: cover */
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
 
-  .product-info {
-    text-align: center;
-    margin-top: 10px;
-    color: #f3df00;
-  }
-
-  .product-info a {
-    display: block;
-    margin-top: 5px;
-    color: #000;
-    color: #f3df00;
-    text-decoration: none;
-  }
-
-  .product-info a:hover {
-    color: white;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-
-  .footer {
-    background-color: #000000;
-    color: #f3df00;
-    padding: 20px 0;
-    text-align: center;
-  }
-
-  .footer p {
-    margin: 0;
-    color: #ffffff;
-  }
-
-  .footer-links {
-    list-style: none;
-    padding: 0;
-    margin-top: 10px;
-  }
-
-  .footer-links li {
-    display: inline;
-    margin-right: 10px;
-  }
-
-  .footer-links li a {
-    color: #f3df00;
-    text-decoration: none;
-  }
-
-  .footer-links li a:hover {
-    color: #7a7a7a;
-  }
-
-  .add-prod {
-    height: 45px;
-    width: 45px;
     position: absolute;
-    right: 30px;
-    top: 90px;
-    border: 4px dotted black;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
+    top: 0;
+    left: 0;
   }
+  .video-wrapper {
+    /* Telling our absolute positioned video to 
+  be relative to this element */
 
-  .add-prod:hover {
-    background-color: black;
+    width: 100%;
+    height: 100%;
+
+    /* Will not allow the video to overflow the 
+  container */
+    overflow: hidden;
+
+    /* Centering the container's content vertically 
+  and horizontally */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: -1;
+    top: 0;
   }
-  .add-prod:hover svg {
-    fill: rgb(235, 192, 1);
+  .header {
+    position: relative;
+    color: white;
+    text-shadow: 3px 0px 7px rgba(81, 67, 21, 0.8),
+      -3px 0px 7px rgba(81, 67, 21, 0.8), 0px 4px 7px rgba(81, 67, 21, 0.8);
   }
 </style>
-{% endblock %} {% block body %} {% block nav %} {% endblock %}
-
-<a href="/add"><div class ="add-prod">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="40"
-    height="40"
-    fill="black"
-    class="bi bi-plus-lg"
-    viewBox="0 0 16 16"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
-    />
-  </svg>
-</div></a>
-<div class="container">
-  <div class="product-grid">
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/400/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/700" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/800/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-    <div class="product">
-      <img src="https://picsum.photos/200/300" alt="Product 1" />
-      <div class="product-info">
-        <p>Product 1</p>
-        <a href="/view">View Product</a>
-        <a href="/review">View Review Analysis</a>
-      </div>
-    </div>
-  </div>
+{% endblock %}{% block body %}
+<div class="video-wrapper">
+  <video id="videoBG" autoplay muted loop>
+    <source src="{{vid}}" type="video/mp4" />
+  </video>
 </div>
-<footer class="footer">
-  <div class="container">
-    <p>&copy; 2024 Product Reviews. All rights reserved.</p>
-    <ul class="footer-links">
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms of Service</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="/contact">Contact us</a></li>
-    </ul>
-  </div>
-</footer>
-
+<div class="container header">
+  <h1>Hello! Welcome to the Product Analysis Web App</h1>
+  <a href="/log"><button>Get Started</button></a>
+</div>
 {% endblock %}

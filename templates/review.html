@@ -1,5 +1,5 @@
-{% extends 'base.html' %} {% include 'navbar.html' %} {% block title %} Review
-Product Analysis {% endblock %} {% block head %}
+{% extends 'base.html' %} {% block title %} Review Product Analysis {% endblock
+%} {% block head %}
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -62,23 +62,22 @@ Product Analysis {% endblock %} {% block head %}
     background-color: #0056b3;
   }
 </style>
-{% endblock %} {% block body %} {% block nav %} {% endblock %}
+{% endblock %} {% block body %} {% include 'navbar.html' %}
 <div class="container-rev">
   <h2>Review Product Analysis</h2>
   <div class="analysis-details">
     <h3>Customer Reviews</h3>
     <ul>
-      <li>
-        Review 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </li>
-      <li>
-        Review 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      </li>
+      {% for rev in reviews %}
+      <li>{{rev.author}}: {{rev.review}}</li>
+      {% endfor %}
     </ul>
     <h3>Sales Performance</h3>
     <p>Total Sales: XXX</p>
-    <p>Average Rating: X.X</p>
-    <a href="/detailed"><button class="btn">Request Detailed Report</button></a>
+    <p>Average Rating: {{product.rating}}</p>
+    <a href="/detailed/{{product.asin}}"
+      ><button class="btn">Request Detailed Report</button></a
+    >
   </div>
 </div>
-{% endblock %}
+{% include 'footer.html' %} {% endblock %}
